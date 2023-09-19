@@ -1,0 +1,15 @@
+.card {
+  width: 250px;
+  height: 200px;
+  border: 1px solid rgb(147, 134, 134);
+  border-radius: 0.3rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+.last,
+.next {
+  margin: 1rem;
+}
+button {
+  margin-left: 0.5rem;
+}
