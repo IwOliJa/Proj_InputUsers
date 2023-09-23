@@ -4,7 +4,7 @@ const nameInp = document.querySelector(".name");
 const emailInp = document.querySelector(".email");
 const websiteInp = document.querySelector(".website");
 const body = document.querySelector("body");
-// const inputs = document.querySelectorAll("input");
+const input = document.querySelector("input");
 
 const nextBtn = document.querySelector(".next");
 const lastBtn = document.querySelector(".last");
@@ -31,11 +31,14 @@ function fetchData() {
 }
 
 function createCard(jsonData) {
-  nameInp.value = jsonData.name;
+  // nameInp.value = jsonData.name;
+  nameInp.value = "";
   pName.innerText = `Name: ${jsonData.name}`;
-  emailInp.value = jsonData.email;
+  // emailInp.value = jsonData.email;
+  emailInp.value = "";
   pEmail.innerText = `Email: ${jsonData.email}`;
-  websiteInp.value = jsonData.website;
+  // websiteInp.value = jsonData.website;
+  websiteInp.value = "";
   pWebsite.innerText = `Website: ${jsonData.website}`;
 }
 
@@ -93,6 +96,13 @@ lastBtn.addEventListener("click", () => {
 });
 
 //---------заготовки------------------------
+
+// });
+// input.addEventListener("click", () => {
+//   nameInp.value = "";
+//   emailInp.value = "";
+//   websiteInp.value = "";
+// });
 
 // .then((jsonData) => {
 //   nameInp.value = jsonData.name;
