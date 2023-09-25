@@ -1,5 +1,3 @@
-//-----------Проект в процессе---------------
-
 const nameInp = document.querySelector(".name");
 const emailInp = document.querySelector(".email");
 const websiteInp = document.querySelector(".website");
@@ -21,32 +19,32 @@ let url = "https://jsonplaceholder.typicode.com/users";
 let url2;
 
 fetchData();
-
-function fetchData() {
+async function fetchData() {
   url = `${url}/${entpoint}`;
-  fetch(url)
-    .then((response) => response.json())
-    .then((jsonData) => {
-      return createCard(jsonData);
-    });
+  const response = await fetch(url);
+  const jsonData = await response.json();
+  console.log(jsonData);
+  createCard(jsonData);
 }
 
 function createCard(jsonData) {
-  nameInp.value = "";
   pName.innerText = `Name: ${jsonData.name}`;
-  emailInp.value = "";
+  nameInp.value = "";
+
   pEmail.innerText = `Email: ${jsonData.email}`;
-  websiteInp.value = "";
+  emailInp.value = "";
+
   pWebsite.innerText = `Website: ${jsonData.website}`;
+  websiteInp.value = "";
   let url = "https://jsonplaceholder.typicode.com/users";
   url2 = `${url}?id=${jsonData.id}`;
-  // console.log(url2);
+  console.log(url2);
   return url2;
 }
 
 nextBtn.addEventListener("click", () => {
   let url = "https://jsonplaceholder.typicode.com/users";
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
       return jsonData;
@@ -65,14 +63,14 @@ nextBtn.addEventListener("click", () => {
         .then((response) => response.json())
         .then((jsonData) => {
           // console.log(jsonData);
-          return createCard(jsonData);
+          createCard(jsonData);
         });
     });
 });
 
 lastBtn.addEventListener("click", () => {
   let url = "https://jsonplaceholder.typicode.com/users";
-  fetch(url)
+  return fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
       return jsonData;
@@ -83,9 +81,13 @@ lastBtn.addEventListener("click", () => {
       return objLength;
     })
     .then((objLength) => {
-      if (entpoint < 1) entpoint = objLength;
-
-      return (url = `${url}/${entpoint--}`);
+      if (entpoint < 1) {
+        entpoint = objLength;
+      } else if (entpoint === 1) {
+        entpoint = objLength + 1;
+      }
+      url = `${url}/${--entpoint}`;
+      return url;
     })
     .then((url) => {
       fetch(url)
