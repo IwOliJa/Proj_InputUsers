@@ -42,50 +42,38 @@ function createCard(jsonData) {
   return url2;
 }
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", async () => {
   let url = "https://jsonplaceholder.typicode.com/users";
-  return fetch(url)
-    .then((response) => response.json())
-    .then((jsonData) => {
-      return jsonData.length;
-    })
-    .then((objLength) => {
-      if (entpoint >= objLength) entpoint = 0;
-      return (url = `${url}/${++entpoint}`);
-    })
-    .then((url) => {
-      fetch(url)
-        .then((response) => response.json())
-        .then((jsonData) => {
-          // console.log(jsonData);
-          createCard(jsonData);
-        });
+  const response = await fetch(url);
+  const jsonData = await response.json();
+  const objLength = jsonData.length;
+  if (entpoint >= objLength) entpoint = 0;
+  const url_1 = (url = `${url}/${++entpoint}`);
+  fetch(url_1)
+    .then((response_1) => response_1.json())
+    .then((jsonData_1) => {
+      // console.log(jsonData);
+      createCard(jsonData_1);
     });
 });
 
-lastBtn.addEventListener("click", () => {
+lastBtn.addEventListener("click", async () => {
   let url = "https://jsonplaceholder.typicode.com/users";
-  return fetch(url)
-    .then((response) => response.json())
-    .then((jsonData) => {
-      return jsonData.length;
-    })
-    .then((objLength) => {
-      if (entpoint < 1) {
-        entpoint = objLength;
-      } else if (entpoint === 1) {
-        entpoint = objLength + 1;
-      }
-      url = `${url}/${--entpoint}`;
-      return url;
-    })
-    .then((url) => {
-      fetch(url)
-        .then((response) => response.json())
-        .then((jsonData) => {
-          // console.log(jsonData);
-          return createCard(jsonData);
-        });
+  const response = await fetch(url);
+  const jsonData = await response.json();
+  const objLength = jsonData.length;
+  if (entpoint < 1) {
+    entpoint = objLength;
+  } else if (entpoint === 1) {
+    entpoint = objLength + 1;
+  }
+  url = `${url}/${--entpoint}`;
+  const url_1 = url;
+  fetch(url_1)
+    .then((response_1) => response_1.json())
+    .then((jsonData_1) => {
+      // console.log(jsonData);
+      return createCard(jsonData_1);
     });
 });
 
