@@ -47,12 +47,7 @@ nextBtn.addEventListener("click", () => {
   return fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
-      return jsonData;
-    })
-    .then((jsonData) => {
-      const objLength = Object.keys(jsonData).length;
-      // console.log(objLength);
-      return objLength;
+      return jsonData.length;
     })
     .then((objLength) => {
       if (entpoint >= objLength) entpoint = 0;
@@ -73,12 +68,7 @@ lastBtn.addEventListener("click", () => {
   return fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
-      return jsonData;
-    })
-    .then((jsonData) => {
-      const objLength = Object.keys(jsonData).length;
-      // console.log(objLength);
-      return objLength;
+      return jsonData.length;
     })
     .then((objLength) => {
       if (entpoint < 1) {
@@ -106,13 +96,13 @@ editBtn.addEventListener("click", () => {
     website: websiteInp.value,
   };
 
-  fetch(url2, {
-    method: "PUT",
-    body: JSON.stringify(newData),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
+  // fetch(url2, {
+  //   method: "PUT",
+  //   body: JSON.stringify(newData),
+  //   headers: {
+  //     "Content-type": "application/json; charset=UTF-8",
+  //   },
+  // });
   console.log(newData);
   createCard(newData);
 });
